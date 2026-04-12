@@ -1,3 +1,4 @@
+import com.codeborne.selenide.ElementsCollection;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -53,6 +54,17 @@ public class PracticeFormTests extends TestBase {
         // Проверить что отправка формы была успешна
         $("#resultModal").shouldHave(visible);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        ElementsCollection results = $("#resultBody").findAll("td");
+        results.get(1).shouldHave(text("First Name Second Name"));
+        results.get(3).shouldHave(text("example@mail.com"));
+        results.get(5).shouldHave(text("Other"));
+        results.get(7).shouldHave(text("9999999999"));
+        results.get(9).shouldHave(text("2008-07-04"));
+        results.get(11).shouldHave(text("Math"));
+        results.get(13).shouldHave(text("Reading"));
+        results.get(15).shouldHave(text("capybara.avif"));
+        results.get(17).shouldHave(text("Pushkina, Kolotushkina"));
+        results.get(19).shouldHave(text("Uttar Pradesh Agra"));
     }
 
     @Test  // Заполнение только обязательных полей
