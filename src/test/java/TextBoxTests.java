@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests extends TestBase {
@@ -9,23 +10,23 @@ public class TextBoxTests extends TestBase {
     @Test // Успешное заполнение и отправка формы
     void successfulFormCompletionTest(){
         open("/text-box.html");
-        $("input[id=userName]").setValue("Full Name");
-        $("input[id=userEmail]").setValue("example@mail.com");
-        $("textarea[id=currentAddress]").setValue("Pushkina, Kolotushkina");
-        $("textarea[id=permanentAddress]").setValue("Pushkina, Kolotushkina");
-        $("button[id=submit]").click();
+        $("#userForm").$(byId("userName")).setValue("Full Name");
+        $("#userForm").$(byId("userEmail")).setValue("example@mail.com");
+        $("#userForm").$(byId("currentAddress")).setValue("Pushkina, Kolotushkina");
+        $("#userForm").$(byId("permanentAddress")).setValue("Pushkina, Kolotushkina");
+        $("#submit").click();
 
-        $("p[id=name]").shouldHave(text("Name:Full Name"));
-        $("p[id=email]").shouldHave(text("Email:example@mail.com"));
-        $("p[id=currentAddress]").shouldHave(text("Current Address :Pushkina, Kolotushkina"));
-        $("p[id=permanentAddress]").shouldHave(text("Permananet Address :Pushkina, Kolotushkina"));
+        $("#output").$(byId("name")).shouldHave(text("Name:Full Name"));
+        $("#output").$(byId("email")).shouldHave(text("Email:example@mail.com"));
+        $("#output").$(byId("currentAddress")).shouldHave(text("Current Address :Pushkina, Kolotushkina"));
+        $("#output").$(byId("permanentAddress")).shouldHave(text("Permananet Address :Pushkina, Kolotushkina"));
     }
 
     @Test // Отправка формы при некорректном значении Email
     void incorrectEmail(){
         open("/text-box.html");
-        $("input[id=userEmail]").setValue("F!");
-        $("button[id=submit]").click();
-        $("p[id=email]").shouldNotHave(visible);
+        $("#userForm").$(byId("userEmail")).setValue("F!");
+        $("#submit").click();
+        $("#output").$(byId("email")).shouldNotHave(visible);
     }
 }
