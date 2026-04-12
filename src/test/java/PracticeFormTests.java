@@ -1,7 +1,6 @@
 import com.codeborne.selenide.ElementsCollection;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -37,7 +36,7 @@ public class PracticeFormTests extends TestBase {
         // Установить значение Hobbies
         $("#hobbies-checkbox-2").click();
         // Добавить изображение
-        $("#uploadPicture").uploadFile(new File("src/test/data/capybara.avif"));
+        $("#uploadPicture").uploadFromClasspath("capybara.avif");
         // Заполнить поле Current Address
         $("#currentAddress").click();
         $("#currentAddress").setValue("Pushkina, Kolotushkina");
