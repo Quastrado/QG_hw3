@@ -14,103 +14,103 @@ public class PracticeFormTests extends TestBase {
 //        // Убрать баннер
         $("[aria-label=Close]").click();
         // Заполнить поле FirstName
-        $("[id=firstName]").click();
-        $("[id=firstName]").setValue("First Name");
+        $("#firstName").click();
+        $("#firstName").setValue("First Name");
         // Заполнить поле LastName
-        $("[id=lastName]").click();
-        $("[id=lastName]").setValue("Second Name");
+        $("#lastName").click();
+        $("#lastName").setValue("Second Name");
         // Заполнить поле Email
-        $("[id=userEmail]").click();
-        $("[id=userEmail]").setValue("example@mail.com");
+        $("#userEmail").click();
+        $("#userEmail").setValue("example@mail.com");
         // Установить значение Gender
-        $("[id=gender-radio-3]").click();
+        $("#gender-radio-3").click();
         // Заполнить поле Mobile
-        $("[id=userNumber]").click();
-        $("[id=userNumber]").setValue("9999999999");
+        $("#userNumber").click();
+        $("#userNumber").setValue("9999999999");
         // Заполнить поле Date of Birth
-        $("[id=dateOfBirthInput]").click();
+        $("#dateOfBirthInput").click();
         $x("//*[@data-day='4']").click();
         // Заполнить поле Subjects
-        $("[class=subjects-input-area]").click();
+        $(".subjects-input-area").click();
         $x("//*[contains(text(), 'Math')]").click();
         // Установить значение Hobbies
-        $("[id=hobbies-checkbox-2]").click();
+        $("#hobbies-checkbox-2").click();
         // Добавить изображение
-        $("[id=uploadPicture]").uploadFile(new File("src/test/data/capybara.avif"));
+        $("#uploadPicture").uploadFile(new File("src/test/data/capybara.avif"));
         // Заполнить поле Current Address
-        $("[id=currentAddress]").click();
-        $("[id=currentAddress]").setValue("Pushkina, Kolotushkina");
+        $("#currentAddress").click();
+        $("#currentAddress").setValue("Pushkina, Kolotushkina");
         // Заполнить поле State
-        $("[id=state]").click();
+        $("#state").click();
         $x("//*[contains(text(), 'Uttar Pradesh')]").scrollIntoView(true);
         $x("//*[contains(text(), 'Uttar Pradesh')]").click();
         // Заполнить поле City
-        $("[id=city]").click();
+        $("#city").click();
         $x("//*[contains(text(), 'Agra')]").click();
         // Выполнить отправку формы
-        $("[id=submit]").scrollIntoView(true);
-        $("[id=submit]").click();
+        $("#submit").scrollIntoView(true);
+        $("#submit").click();
         // Проверить что отправка формы была успешна
-        $("[id=resultModal]").shouldHave(visible);
-        $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
+        $("#resultModal").shouldHave(visible);
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
     }
 
     @Test  // Заполнение только обязательных полей
     void requiredFieldsOnlyTest() {
         open("/automation-practice-form.html");
         $("[aria-label=Close]").click();
-        $("[id=firstName]").click();
-        $("[id=firstName]").setValue("First Name");
-        $("[id=lastName]").click();
-        $("[id=lastName]").setValue("Second Name");
-        $("[id=userEmail]").click();
-        $("[id=userEmail]").setValue("example@mail.com");
-        $("[id=gender-radio-3]").click();
-        $("[id=userNumber]").click();
-        $("[id=userNumber]").setValue("9999999999");
-        $("[id=dateOfBirthInput]").click();
+        $("#firstName").click();
+        $("#firstName").setValue("First Name");
+        $("#lastName").click();
+        $("#lastName").setValue("Second Name");
+        $("#userEmail").click();
+        $("#userEmail").setValue("example@mail.com");
+        $("#gender-radio-3").click();
+        $("#userNumber").click();
+        $("#userNumber").setValue("9999999999");
+        $("#dateOfBirthInput").click();
         $x("//*[@data-day='4']").click();
-        $("[id=submit]").click();
-        $("[id=resultModal]").shouldHave(visible);
-        $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
+        $("#submit").click();
+        $("#resultModal").shouldHave(visible);
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
     }
 
     @Test  // Отправка пустой формы
     void unsuccessfulSubmitTest(){
         open("/automation-practice-form.html");
         $("[aria-label=Close]").click();
-        $("[id=submit]").scrollIntoView(true);
-        $("[id=submit]").click();
-        $("[id=formError]").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
+        $("#submit").scrollIntoView(true);
+        $("#submit").click();
+        $("#formError").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
     }
 
     @Test  // Отправка формы с некорректным номером телефона
     void incorrectNumberTest() {
         open("/automation-practice-form.html");
         $("[aria-label=Close]").click();
-        $("[id=firstName]").click();
-        $("[id=firstName]").setValue("First Name");
-        $("[id=lastName]").click();
-        $("[id=lastName]").setValue("Second Name");
-        $("[id=userEmail]").click();
-        $("[id=userEmail]").setValue("example@mail.com");
-        $("[id=userNumber]").click();
-        $("[id=userNumber]").setValue("999999999");
-        $("[id=submit]").click();
-        $("[id=formError]").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
+        $("#firstName").click();
+        $("#firstName").setValue("First Name");
+        $("#lastName").click();
+        $("#lastName").setValue("Second Name");
+        $("#userEmail").click();
+        $("#userEmail").setValue("example@mail.com");
+        $("#userNumber").click();
+        $("#userNumber").setValue("999999999");
+        $("#submit").click();
+        $("#formError").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
     }
 
     @Test  // Отправка формы с пустым полем First Name
     void submitWithoutNameTest() {
         open("/automation-practice-form.html");
         $("[aria-label=Close]").click();
-        $("[id=lastName]").click();
-        $("[id=lastName]").setValue("Second Name");
-        $("[id=userEmail]").click();
-        $("[id=userEmail]").setValue("example@mail.com");
-        $("[id=userNumber]").click();
-        $("[id=userNumber]").setValue("999999999");
-        $("[id=submit]").click();
-        $("[id=formError]").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
+        $("#lastName").click();
+        $("#lastName").setValue("Second Name");
+        $("#userEmail").click();
+        $("#userEmail").setValue("example@mail.com");
+        $("#userNumber").click();
+        $("#userNumber").setValue("999999999");
+        $("#submit").click();
+        $("#formError").shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
     }
 }
