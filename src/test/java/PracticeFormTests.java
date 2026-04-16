@@ -12,7 +12,8 @@ public class PracticeFormTests extends TestBase {
         // Открыть страницу с формой
         open("/automation-practice-form.html");
 //        // Убрать баннер
-        $("[aria-label=Close]").click();
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         // Заполнить поле FirstName
         $("#firstName").click();
         $("#firstName").setValue("First Name");
